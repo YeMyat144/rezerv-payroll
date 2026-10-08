@@ -1,0 +1,6 @@
+@Rezerv.Payroll.Api_HostAddress = http://localhost:5193
+
+GET {{Rezerv.Payroll.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

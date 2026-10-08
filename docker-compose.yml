@@ -1,0 +1,54 @@
+# One-command local stack: MySQL 8 + .NET API (migrates & seeds on start) + Next.js dashboard.
+#
+#   docker compose up --build
+#
+#   Dashboard  http://localhost:3000
+#   Swagger    http://localhost:8080/swagger
+#   MySQL      localhost:3307  (user: payroll / payroll, db: rezerv_payroll)
+
+name: rezerv-payroll
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: rezerv_payroll
+      MYSQL_USER: payroll
+      MYSQL_PASSWORD: payroll
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build: ./backend
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Payroll: "Server=mysql;Port=3306;Database=rezerv_payroll;User=payroll;Password=payroll;"
+      Database__MigrateAndSeedOnStartup: "true"
+      Cors__AllowedOrigins__0: "http://localhost:3000"
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        # URL the *browser* uses to reach the API (host-mapped port), not the internal service name.
+        NEXT_PUBLIC_API_URL: http://localhost:8080
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  mysql-data:

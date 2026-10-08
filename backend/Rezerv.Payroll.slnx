@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Rezerv.Payroll.Api/Rezerv.Payroll.Api.csproj" />
+    <Project Path="src/Rezerv.Payroll.Application/Rezerv.Payroll.Application.csproj" />
+    <Project Path="src/Rezerv.Payroll.Domain/Rezerv.Payroll.Domain.csproj" />
+    <Project Path="src/Rezerv.Payroll.Infrastructure/Rezerv.Payroll.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Rezerv.Payroll.Tests/Rezerv.Payroll.Tests.csproj" />
+  </Folder>
+</Solution>
