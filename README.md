@@ -94,6 +94,8 @@ in a single period: **2026-06-01 → 2026-06-30**.
 2. Click **Generate payroll**.
 3. Expected summary (SGD):
 
+![Payroll summary for 1–30 Jun 2026, total payout SGD 1,650.50](docs/summary-table.png)
+
 | Instructor   | Studio (no-show policy)        | Class earnings | Commission | Bonus | Adjustment | Final payout |
 | ------------ | ------------------------------ | -------------: | ---------: | ----: | ---------: | -----------: |
 | John Tan     | Flow Yoga (Pay instructor)     |         370.00 |      55.00 | 20.00 |     −30.00 |   **415.00** |
